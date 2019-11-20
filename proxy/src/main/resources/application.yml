@@ -1,0 +1,14 @@
+server:
+  port: 8080
+---
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: my-service
+          uri: lb://my-load-balanced-service
+          predicates:
+            - Path=/**
+my-load-balanced-service:
+  ribbon:
+    listOfServers: localhost:8081,localhost:8082
